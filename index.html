@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Projet Aladin/Dylan</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+	<script src="Fichiers Sources/vue.min.js"></script>
+	<script type="text/javascript" src="database.json"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
+  	
+	<!--SCRIPT STATISTIQUE-->
+	<script type="text/javascript" src="database.json"></script><script src="https://www.amcharts.com/lib/4/core.js"></script>
+	
+	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+  	<script src="https://www.amcharts.com/lib/4/themes/kelly.js"></script>
+  	<script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>   
+
+  	<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+  	<script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
+  	
+
+</head>
+
+<body>
+		<!--HEADER-->
+	<div class="header">
+		<img src="images/logo.png" style="width: 150px; height: 200px;">
+		<!-- <img src="volleyballball.gif" style="width: 100px; height: 100px; margin-top: 4%;">	 -->
+		<div class="TitreHeader">
+			<h1>Adhérents</h1>
+			<p class="textHeader">Cliquez sur un adhérent<br>
+			pour obtenir le détail
+			</p>
+		</div>
+	</div>
+
+		<!--SEARCH-->
+	<form action="search" id="searchthis" method="get">
+		<i class="fas fa-search fa-1x" style="margin-top: 7px; color: #6E0B14;"></i>
+		<input id="search" name="q" type="text" placeholder="Search" />
+	</form>
+
+		<!--LISTE ADHERENTS-->
+	<div class="container mt-5">
+            <div id="content">	
+                	<table id="maintable" class="table table-dark bg-white text-dark" >
+                    	<tbody id="demo">
+                    		<tr style="background-color: #6E0B14; color: white;">
+    						    <th class="col-md-5 col-xs-5">Name  / Surname</th>
+    							<th class="col-md-4 col-xs-4">Company</th>
+      							<th class="col-md-3 col-xs-3">Age</th>
+    						</tr>
+                       		<tr v-for="(adherent, index) in database" class="item" v-bind:id="index" style="font-size: 18px; font-style: italic;">
+
+                           		<td>{{adherent.name}}</td>
+                           		<td>{{adherent.company}}</td>
+                           		<td>{{adherent.age}}</td>
+                        	</tr>         
+                   		</tbody>
+                	</table>
+            </div>		
+		<!--FICHE DETAILS-->
+            <div id="clickBas">
+    			<div id="details"> 	 
+      				<h3 class="titreDetails"> <span style="color: #6E0B14">{{ item.name }}</span></h3><br>
+      					<!-- <p style="width: 50px; height: 50px;"> {{ item.picture }}</p> -->
+     					<!-- <p>Nom : {{ item.name }}</p> -->
+      					<p><i style="color: #6E0B14;">Sexe :</i> {{ item.gender }}</p>
+      					<p><i style="color: #6E0B14;">Email :</i> {{ item.email }}</p>
+      					<p><i style="color: #6E0B14;">Age :</i> {{ item.age }}</p>
+      					<p><i style="color: #6E0B14;">Téléphone :</i> {{ item.phone }}</p>
+      					<p><i style="color: #6E0B14;">Société :</i> {{ item.company }}</p>
+      					<p><i style="color: #6E0B14;">Adresse :</i> {{ item.address }}</p>
+    			</div>
+    		</div>
+    	</div>
+
+		<!--STATISTIQUE-->
+	<div id="nbrAdherent">
+		<h4>Nombre Adhérents <br><script type="text/javascript">document.write(database.length);</script></h4>
+	</div>
+
+	<div id="analyse">
+		<div id="analyseFirst">
+			<h6 class="titreAnalyse mb-3">Quota Hommes-Femmes</h6>
+			<div id="chartdiv"></div>
+		</div>
+
+		<div id="analyseLast">
+			<h6 class="titreAnalyse mb-3">Moyenne Age</h6>
+    		<div id="chartdivAge"></div>
+		</div>
+	</div>
+	    
+	    <!--BACK TO TOP-->                          
+                      
+	<button onclick="topFunction()" id="back-to-top" title="Go to top"><i class="fas fa-arrow-circle-up fa-2x" style="color: #6E0B14; background: none;"></i><br></button>
+
+		<!--FOOTER-->
+	<footer>
+		<div id="footerVg">
+			<h4 style="margin-top: 1%;">@ASCANNES</h4>
+			<div class="reseauFooter">
+				<i class="fab fa-twitter-square fa-2x">&nbsp;</i>
+				<i class="fab fa-instagram fa-2x">&nbsp; </i>
+				<i class="fab fa-facebook fa-2x"></i>
+			</div>
+		</div>
+	</footer>
+
+	<script type="text/javascript" src="scriptnew.js"></script>                    	              
+</body>
+</html>
